@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialPill from "../components/SocialPill.astro";
+import SectionHead from "../components/SectionHead.astro";
+import Project from "../components/Project.astro";
+import Publications from "../components/Publications.astro";
+import WorkItem from "../components/WorkItem.astro";
+import { socials, projects, work } from "../data/site";
+---
+
+<BaseLayout>
+    <div class="hero">
+        <div class="wrap">
+            <h1 class="page-heading">
+                Hi, I'm <span class="name">Kavi!</span>
+            </h1>
+            <p class="hero-bio">
+                I'm a second-year student at UC Berkeley studying
+                <strong>astrophysics</strong>.<br />I currently work on{" "}
+                <strong>quantum compilers</strong> at LBNL.
+            </p>
+            <div class="hero-row">
+                {socials.map((s) => (
+                    <SocialPill {...s} />
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="projects" aria-labelledby="projects-label">
+        <div class="wrap">
+            <SectionHead id="projects-label" label="projects" />
+            <div class="reveal">
+                {projects.map((p) => (
+                    <Project {...p} />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-label">
+        <div class="wrap">
+            <SectionHead id="work-label" label="work & research" />
+            <div class="reveal">
+                {work.map((item) => (
+                    <WorkItem {...item} />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <Publications />
+</BaseLayout>
+
+<style>
+    .hero {
+        padding: 4.5rem 0 3.5rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .hero-bio {
+        font-size: 1rem;
+        color: var(--ink-2);
+        max-width: 560px;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+    }
+
+    .hero-bio strong {
+        color: var(--ink);
+        font-weight: 500;
+    }
+
+    .hero-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .hero h1,
+        .hero-bio,
+        .hero-row {
+            opacity: 0;
+            animation: fadeUp 0.55s forwards;
+        }
+        .hero h1 {
+            animation-delay: 0.1s;
+        }
+        .hero-bio {
+            animation-delay: 0.2s;
+        }
+        .hero-row {
+            animation-delay: 0.3s;
+        }
+    }
+</style>

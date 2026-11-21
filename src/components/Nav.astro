@@ -1,0 +1,45 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header class="site-header">
+  <nav class="wrap bar" aria-label="Main">
+    <a class="nav-logo" href="/"><span class="tilde">~/</span>kavi</a>
+    <ThemeToggle />
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    transition:
+      background var(--t),
+      border-color var(--t);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .nav-logo:hover {
+    text-decoration: none;
+  }
+
+  .tilde {
+    color: var(--accent);
+  }
+</style>

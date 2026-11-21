@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="404 — Lost" description="This page doesn't exist ):" noindex>
+    <div class="wrap">
+        <div class="not-found">
+            <p class="mono-label nf-label">404</p>
+            <h1 class="page-heading">
+                <span class="nf-lost">this page </span> doesn't exist ):
+            </h1>
+            <nav class="nf-links" aria-label="Site">
+                <a href="/">← home</a>
+            </nav>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    .not-found {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: calc(100vh - var(--nav-h));
+        padding: 4rem 0;
+    }
+
+    .nf-label {
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+    }
+
+    .nf-lost {
+        color: var(--ink-3);
+    }
+
+    .nf-links {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        margin-top: 1.25rem;
+    }
+
+    .nf-sep {
+        color: var(--ink-3);
+    }
+</style>

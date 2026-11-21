@@ -1,0 +1,80 @@
+---
+import type { Description } from "../data/site";
+
+interface Props {
+    when: string;
+    title: string;
+    org: string;
+    description: Description;
+}
+const { when, title, org, description } = Astro.props;
+---
+
+<article class="work-item">
+    <span class="work-when">{when}</span>
+    <div>
+        <h3 class="work-title">{title}</h3>
+        <p class="work-org">{org}</p>
+        <p class="work-body">
+            {typeof description === "string"
+                ? description
+                : description.map((part) =>
+                      typeof part === "string" ? (
+                          part
+                      ) : (
+                          <a
+                              href={part.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                          >
+                              {part.label}
+                          </a>
+                      ),
+                  )}
+        </p>
+    </div>
+</article>
+
+<style>
+    .work-item {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .work-when {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--ink-3);
+        padding-top: 0.2rem;
+    }
+
+    .work-title {
+        font-size: 0.97rem;
+        font-weight: 500;
+        color: var(--ink);
+        margin-bottom: 0.15rem;
+    }
+
+    .work-org {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--accent);
+        margin-bottom: 0.55rem;
+    }
+
+    .work-body {
+        font-size: 0.875rem;
+        color: var(--ink-2);
+        line-height: 1.75;
+    }
+
+    @media (max-width: 600px) {
+        .work-item {
+            grid-template-columns: 1fr;
+            gap: 0.35rem;
+        }
+    }
+</style>

@@ -1,0 +1,63 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap row">
+    <span class="foot-l">© {year} {site.name}</span>
+    <a class="foot-link foot-center" href={site.url}>{site.host} ✦</a>
+    <a class="foot-link foot-right" href={`mailto:${site.email}`}>{site.email}</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 2rem 0 5rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .foot-l,
+  .foot-link {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-3);
+  }
+
+  .foot-l {
+    justify-self: start;
+  }
+  .foot-center {
+    justify-self: center;
+  }
+  .foot-right {
+    justify-self: end;
+  }
+
+  .foot-link {
+    transition: color var(--t);
+  }
+
+  .foot-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 520px) {
+    .row {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0.5rem;
+    }
+    .foot-l,
+    .foot-center,
+    .foot-right {
+      justify-self: center;
+    }
+  }
+</style>

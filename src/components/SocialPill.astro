@@ -1,0 +1,44 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  color: string;
+  icon: string;
+}
+const { href, label, color, icon } = Astro.props;
+---
+
+<a class="pill" href={href} style={`--pill: ${color}`} target="_blank" rel="noopener noreferrer">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+    <path d={icon}></path>
+  </svg>
+  {label}
+  <span class="sr-only">(opens in new tab)</span>
+</a>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    padding: 0.22rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--pill);
+    color: var(--pill);
+    transition: background var(--t);
+  }
+
+  .pill:hover {
+    background: var(--bg-subtle);
+    text-decoration: none;
+  }
+
+  .icon {
+    width: 0.75em;
+    height: 0.75em;
+    flex-shrink: 0;
+  }
+</style>

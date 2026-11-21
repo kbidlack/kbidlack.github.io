@@ -1,0 +1,119 @@
+---
+import type { Description } from "../data/site";
+
+interface Props {
+    name: string;
+    sub: string;
+    href: string;
+    description: Description;
+}
+const { name, sub, href, description } = Astro.props;
+---
+
+<article class="project-card">
+    <h3 class="proj-name">
+        <a
+            class="proj-link"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <span>
+                {name}
+                <span class="proj-sep"> / </span>
+                <span class="proj-sub">{sub}</span>
+                <span class="sr-only">(opens in new tab)</span>
+            </span>
+            <span class="proj-arrow" aria-hidden="true">
+                ↗
+            </span>
+        </a>
+    </h3>
+    <p class="proj-desc">
+        {typeof description === "string"
+            ? description
+            : description.map((part) =>
+                  typeof part === "string" ? (
+                      part
+                  ) : (
+                      <a href={part.href} target="_blank">{part.label}</a>
+                  ),
+              )}
+    </p>
+</article>
+
+<style>
+    .project-card {
+        padding-block: 1.3rem;
+    }
+
+    .project-card + .project-card {
+        border-top: 1px solid var(--border);
+    }
+
+    /* not sure how I feel about this */
+    /*.project-card:hover {
+        background: var(--bg-subtle);
+        margin: 0 -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-color: transparent;
+        border-radius: 20px;
+    }*/
+
+    .project-card:first-child {
+        padding-top: 0.45rem;
+    }
+
+    .project-card:last-child {
+        padding-bottom: 0;
+    }
+
+    .proj-name {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--ink);
+        margin-bottom: 0.25rem;
+    }
+
+    .proj-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        color: inherit;
+        overflow-wrap: anywhere;
+    }
+
+    .proj-sep {
+        color: var(--ink-3);
+        font-weight: 300;
+    }
+
+    .proj-sub {
+        color: var(--ink-3);
+        font-weight: 300;
+    }
+
+    .proj-desc {
+        font-size: 0.875rem;
+        color: var(--ink-2);
+        line-height: 1.7;
+    }
+
+    .proj-desc a {
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+    }
+
+    .proj-arrow {
+        flex-shrink: 0;
+        color: var(--ink-3);
+    }
+
+    .proj-link:is(:hover, :focus-visible) .proj-arrow {
+        color: var(--accent);
+    }
+</style>

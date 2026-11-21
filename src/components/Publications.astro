@@ -1,0 +1,88 @@
+---
+import SectionHead from "./SectionHead.astro";
+import { publications } from "../data/site";
+---
+
+<section class="section" id="publications" aria-labelledby="publications-label">
+    <div class="wrap">
+        <SectionHead
+            id="publications-label"
+            label="publications & presentations"
+        />
+        <ul class="publication-list reveal" role="list">
+            {publications.map(({ title, venue, date, when, href, note }) => (
+                <li class="publication">
+                    <time datetime={date}>{when}</time>
+                    <div>
+                        <h3>
+                            <a href={href} target="_blank">
+                                {title}
+                            </a>
+                        </h3>
+                        <p class="venue">{venue}</p>
+                        {note && <p class="note">{note}</p>}
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </div>
+</section>
+
+<style>
+    .venue {
+        font-weight: bold;
+        color: var(--ink);
+    }
+
+    .publication-list {
+        list-style: none;
+    }
+
+    .publication {
+        display: grid;
+        grid-template-columns: 100px minmax(0, 1fr);
+        gap: 2rem;
+        padding: 1.5rem 0;
+    }
+
+    .publication + .publication {
+        border-top: 1px solid var(--border);
+    }
+
+    .publication:last-child {
+        padding-bottom: 0;
+    }
+
+    time {
+        padding-top: 0.2rem;
+        color: var(--ink-2);
+        font: 0.75rem/1.65 var(--mono);
+    }
+
+    h3 {
+        margin-bottom: 0.25rem;
+        font-size: 0.97rem;
+        font-weight: 500;
+    }
+
+    p {
+        color: var(--ink-2);
+        font-size: 0.875rem;
+        line-height: 1.75;
+    }
+
+    .note {
+        margin-top: 0.35rem;
+    }
+
+    @media (max-width: 600px) {
+        .publication {
+            grid-template-columns: 1fr;
+            gap: 0.35rem;
+        }
+
+        time {
+            padding-top: 0;
+        }
+    }
+</style>

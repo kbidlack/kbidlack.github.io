@@ -1,0 +1,58 @@
+<button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+  <span class="theme-icon" aria-hidden="true">
+    <span class="il">☾</span>
+    <span class="id">☀︎</span>
+  </span>
+</button>
+
+<script>
+  const btn = document.getElementById("themeToggle");
+  btn?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  });
+</script>
+
+<style>
+  .theme-btn {
+    background: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    padding: 0.28rem 0.55rem;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    color: var(--ink-3);
+    transition:
+      border-color var(--t),
+      color var(--t),
+      background var(--t);
+  }
+
+  .theme-btn:hover {
+    border-color: var(--border-mid);
+    color: var(--ink);
+    background: var(--bg-subtle);
+  }
+
+  .theme-icon {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+  }
+
+  .id {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .il {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .id {
+    display: inline;
+  }
+</style>
