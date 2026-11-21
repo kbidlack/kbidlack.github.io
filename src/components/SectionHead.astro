@@ -1,31 +1,33 @@
 ---
 interface Props {
-  id: string;
-  label: string;
+    id: string;
+    label: string;
 }
 const { id, label } = Astro.props;
 ---
 
 <div class="sec-head reveal">
-  <h2 class="mono-label label" id={id}>{label}</h2>
-  <div class="rule"></div>
+    <h2 class="mono-label label" id={id}>
+        {label}
+    </h2>
+    <div class="rule"></div>
 </div>
 
 <style>
-  .sec-head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
+    .sec-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
 
-  .label {
-    white-space: nowrap;
-  }
+    .label {
+        white-space: nowrap;
+    }
 
-  .rule {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+    .rule {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+    }
 </style>

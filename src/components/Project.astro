@@ -36,7 +36,9 @@ const { name, sub, href, description } = Astro.props;
                   typeof part === "string" ? (
                       part
                   ) : (
-                      <a href={part.href} target="_blank">{part.label}</a>
+                      <a href={part.href} target="_blank">
+                          {part.label}
+                      </a>
                   ),
               )}
     </p>
